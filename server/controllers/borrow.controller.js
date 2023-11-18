@@ -17,7 +17,7 @@ const create = async (req, res) => {
 };
 const list = async (req, res) => {
   try {
-    let borrows = await Borrow.find().select("name email updated created");
+    let borrows = await Borrow.find();
     res.json(borrows);
   } catch (err) {
     return res.status(400).json({

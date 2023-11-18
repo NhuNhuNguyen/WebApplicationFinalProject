@@ -17,7 +17,7 @@ const create = async (req, res) => {
 };
 const list = async (req, res) => {
   try {
-    let books = await Book.find().select("name email updated created");
+    let books = await Book.find();
     res.json(books);
   } catch (err) {
     return res.status(400).json({
@@ -40,6 +40,23 @@ const bookByID = async (req, res, next, id) => {
     });
   }
 };
+const bookByTitle = async (req, res, next, title) => {
+  try {
+    let book = await Book.findByTitle(title);
+    if (!book)
+      return res.status("400").json({
+        error: "Book not found",
+      });
+    req.profile = book;
+    next();
+  } catch (err) {
+    return res.status("400").json({
+      error: "Could not retrieve book",
+    });
+  }
+};
+
+
 const read = (req, res) => {
   req.profile.hashed_password = undefined;
   req.profile.salt = undefined;

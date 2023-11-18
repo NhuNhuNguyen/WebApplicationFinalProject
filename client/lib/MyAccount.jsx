@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { format } from 'date-fns'
 
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -90,7 +91,7 @@ export default function Borrows() {
                   alt="The house from the offer."
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
-                <ImageListItemBar title={item._id} subtitle={<span>by: {item._id}</span>} position="below" />
+                <ImageListItemBar title={item._id} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
             </Link>
           );
         })}
