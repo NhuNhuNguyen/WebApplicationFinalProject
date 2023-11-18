@@ -9,9 +9,14 @@ import List from "@material-ui/core/List";
 import { list } from "../borrow/api-borrow.js";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
+import Box from "@material-ui/core/Box";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
+import ImageListItem from "@material-ui/core/ImageListItem";
+import ImageList from "@material-ui/core/ImageList";
+import ImageListItemBar from "@material-ui/core/ImageListItemBar";
+
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
@@ -23,6 +28,7 @@ import Typography from "@material-ui/core/Typography";
 //import ArrowForward from '@material-ui/core/ArrowForward'
 import ArrowForward from "@material-ui/icons/ArrowForward";
 //import unicornbikeImg from "./../assets/images/unicornbikeImg.jpg";
+import bookImg from './../assets/images/book.png';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -69,25 +75,26 @@ export default function Borrows() {
       <Typography variant="h6" className={classes.title}>
         All Borrow
       </Typography>
-      <List dense>
+      <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {borrows.map((item, i) => {
           return (
             <Link component={RouterLink} to={"/borrow/" + item._id} key={i}>
-              <ListItem button>
-                <ListItemAvatar>
-                  <Avatar></Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={item.user} />
-                <ListItemSecondaryAction>
-                  <IconButton>
-                    <ArrowForward />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
+                <Box
+                  component="img"
+                  sx={{
+                    height: 128,
+                    width: 128,
+                    maxHeight: { xs: 233, md: 167 },
+                    maxWidth: { xs: 350, md: 250 },
+                  }}
+                  alt="The house from the offer."
+                  src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                />
+                <ImageListItemBar title={item._id} subtitle={<span>by: {item._id}</span>} position="below" />
             </Link>
           );
         })}
-      </List>
+      </ImageList>
     </Paper>
   );
 }
