@@ -25,10 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
   const clickSubmit = () => {
-    console.log("click...............")
-  }
-  const handleChange = name => event => {
-    console.log("change..............")
+    console.log("user")
   }
   
   const classes = useStyles()
@@ -36,7 +33,7 @@ export default function Home() {
     <Card className={classes.card}>
 
       <Typography variant="h6" className={classes.title}>New Borrow</Typography>
-      <TextField id="title" type="title" label="Title" className={classes.textField} onChange={handleChange('title')}  margin="normal" /><br />
+      <TextField id="title" type="title" label="Title" className={classes.textField}   margin="normal" /><br />
 
       <CardMedia className={classes.media} />
       <CardContent>
