@@ -19,7 +19,7 @@ export default function Menu(){
   <AppBar position="static">
     <Toolbar>
       <Typography variant="h6" color="inherit">
-        MERN Skeleton
+        Library
       </Typography>
       <Link to="/">
         <IconButton aria-label="Home" style={isActive(location, "/")}>
