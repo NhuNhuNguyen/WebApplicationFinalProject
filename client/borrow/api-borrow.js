@@ -27,7 +27,7 @@ const list = async (signal) => {
 };
 const read = async (params, credentials, signal) => {
   try {
-    let response = await fetch("/api/borrows/" + params.userId, {
+    let response = await fetch("/api/borrows/" + params.borrowId, {
       method: "GET",
       signal: signal,
       headers: {
@@ -41,16 +41,16 @@ const read = async (params, credentials, signal) => {
     console.log(err);
   }
 };
-const update = async (params, credentials, user) => {
+const update = async (params, credentials, borrow) => {
   try {
-    let response = await fetch("/api/borrows/" + params.userId, {
+    let response = await fetch("/api/borrows/" + params.borrowId, {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         Authorization: "Bearer " + credentials.t,
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(borrow),
     });
     return await response.json();
   } catch (err) {
@@ -59,7 +59,7 @@ const update = async (params, credentials, user) => {
 };
 const remove = async (params, credentials) => {
   try {
-    let response = await fetch("/api/borrows/" + params.userId, {
+    let response = await fetch("/api/borrows/" + params.borrowId, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

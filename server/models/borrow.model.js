@@ -21,4 +21,4 @@ const BorrowSchema = new mongoose.Schema({
 });
 
 //module.exports = mongoose.model('User', UserSchema);
-export default mongoose.model("Book", BookSchema);
+export default mongoose.model("Borrow", BorrowSchema);

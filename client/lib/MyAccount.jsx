@@ -69,7 +69,25 @@ export default function Borrows() {
       <Typography variant="h6" className={classes.title}>
         All Borrow
       </Typography>
- 
+      <List dense>
+        {borrows.map((item, i) => {
+          return (
+            <Link component={RouterLink} to={"/borrow/" + item._id} key={i}>
+              <ListItem button>
+                <ListItemAvatar>
+                  <Avatar></Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={item.user} />
+                <ListItemSecondaryAction>
+                  <IconButton>
+                    <ArrowForward />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            </Link>
+          );
+        })}
+      </List>
     </Paper>
   );
 }

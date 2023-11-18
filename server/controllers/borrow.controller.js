@@ -17,7 +17,7 @@ const create = async (req, res) => {
 };
 const list = async (req, res) => {
   try {
-    let borrows = await Book.find().select("name email updated created");
+    let borrows = await Borrow.find().select("name email updated created");
     res.json(borrows);
   } catch (err) {
     return res.status(400).json({
@@ -30,7 +30,7 @@ const borrowByID = async (req, res, next, id) => {
     let borrow = await Borrow.findById(id);
     if (!borrow)
       return res.status("400").json({
-        error: "Book not found",
+        error: "Borrow not found",
       });
     req.profile = borrow;
     next();
