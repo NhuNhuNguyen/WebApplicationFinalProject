@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
+import Button from '@material-ui/core/Button'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 
@@ -24,6 +25,15 @@ export default function Menu(){
         <IconButton aria-label="Home" style={isActive(location, "/")}>
           <HomeIcon/>
         </IconButton>
+      </Link>
+      <Link to="/borrow">
+        <Button style={isActive(location, "/borrow")}>Borrow</Button>
+      </Link>
+      <Link to="/renew">
+        <Button style={isActive(location, "/renew")}>Renew</Button>
+      </Link>
+      <Link to="/return">
+        <Button style={isActive(location, "/return")}>Return</Button>
       </Link>
     </Toolbar>
   </AppBar>

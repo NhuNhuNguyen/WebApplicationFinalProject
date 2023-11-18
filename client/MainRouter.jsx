@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./core/Home";
 import Menu from "./core/Menu";
+import Borrow from "./lib/Borrow.jsx";
 
 function MainRouter() {
   return (
@@ -10,6 +11,7 @@ function MainRouter() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/borrow" element={<Borrow />} />
       </Routes>
     </div>
   );
