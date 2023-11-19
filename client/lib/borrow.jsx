@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { list } from "../borrow/api-book.js";
+import { read2 } from "../borrow/api-book.js";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -38,8 +38,9 @@ export default function Home() {
     alert('s1f');
     const abortController = new AbortController();
     const signal = abortController.signal;
-    list(signal).then((data) => {
-      alert('sss222d' +data)
+    //list(signal).then((data) => {
+    read2(book, signal).then((data) => {
+      //alert('sss222d' +data)
       if (data.error) {
         alert('sss1' +data)
         setValues({ ...values, error: data.error })

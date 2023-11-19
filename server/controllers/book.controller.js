@@ -63,6 +63,12 @@ const read = (req, res) => {
   return res.json(req.profile);
 };
 
+const read2 = (req, res) => {
+  req.profile.hashed_password = undefined;
+  req.profile.salt = undefined;
+  return res.json(req.profile);
+};
+
 const update = async (req, res) => {
   try {
     let book = req.profile;
