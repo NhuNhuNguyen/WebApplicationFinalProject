@@ -6,6 +6,8 @@ import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
 import Button from '@material-ui/core/Button'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Box from "@material-ui/core/Box";
+import weblogo_s from './../assets/images/logo_s.png';
 
 
 const isActive = (location, path) => {
@@ -18,8 +20,19 @@ export default function Menu(){
   return (
   <AppBar position="static">
     <Toolbar>
+    <Box
+      component="img"
+      sx={{
+        height: 40,
+        width: 40,
+        maxHeight: { xs: 40, md: 40 },
+        maxWidth: { xs: 40, md: 40 },
+      }}
+      alt="Web Ninja's Library."
+      src={`${weblogo_s}?w=40&fit=crop&auto=format&dpr=2 2x`}
+      />
       <Typography variant="h6" color="inherit">
-        Library
+      Web Ninja's Library
       </Typography>
       <Link to="/">
         <IconButton aria-label="Home" style={isActive(location, "/")}>

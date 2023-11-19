@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import { list } from "../borrow/api-book.js";
+
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 600,
@@ -28,7 +30,24 @@ export default function Home() {
     console.log("click...............")
   }
   const handleChange = name => event => {
-    console.log("change..............")
+    
+    console.log("change..............");
+    const book = {
+      bookTitle: event.target.value || undefdined
+    }
+    alert('s1f');
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+    list(signal).then((data) => {
+      alert('sss222d' +data)
+      if (data.error) {
+        alert('sss1' +data)
+        setValues({ ...values, error: data.error })
+      } else {
+        console.log(data)
+        alert('sss2' +data)
+      }
+    })
   }
   
   const classes = useStyles()
@@ -40,11 +59,11 @@ export default function Home() {
 
       <CardMedia className={classes.media} />
       <CardContent>
-      
+
         <Typography variant="body2" component="p">
           .
         </Typography>
-        
+
       </CardContent>
       <CardActions>
         <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Borrow Now</Button>

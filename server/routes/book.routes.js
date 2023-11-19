@@ -15,5 +15,7 @@ router.param("bookId", bookCtrl.bookByID);
 router.route("/api/books/:bookId").get(bookCtrl.read);
 router.route("/api/books/:bookId").put(bookCtrl.update);
 router.route("/api/books/:bookId").delete(bookCtrl.remove);
+router.param("bookTitle", bookCtrl.bookByTitle);
+router.route("/api/booksT/:bookTitle").get(bookCtrl.read2);
 
 export default router;

@@ -91,4 +91,4 @@ const remove = async (req, res) => {
     });
   }
 };
-export default { create, bookByID, read, list, remove, update };
+export default { create, bookByID, bookByTitle, read, list, remove, update };
