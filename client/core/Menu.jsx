@@ -45,9 +45,7 @@ export default function Menu(){
       <Link to="/myaccount">
         <Button style={isActive(location, "/myaccount")}>My Account</Button>
       </Link>
-      <Link to="/borrow">
-        <Button style={isActive(location, "/borrow")}>Borrow</Button>
-      </Link>
+
       <Link to="/renew">
         <Button style={isActive(location, "/renew")}>Renew</Button>
       </Link>
