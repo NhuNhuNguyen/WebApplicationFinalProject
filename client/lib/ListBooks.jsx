@@ -16,6 +16,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItemBar from "@material-ui/core/ImageListItemBar";
+import Button from '@material-ui/core/Button';
 
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
@@ -30,6 +31,7 @@ import ArrowForward from "@material-ui/icons/ArrowForward";
 //import unicornbikeImg from "./../assets/images/unicornbikeImg.jpg";
 import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-book.js";
+import { create } from "../borrow/api-borrow.js";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -51,6 +53,33 @@ const useStyles = makeStyles((theme) => ({
     // Define your root styles here
   },
 }));
+
+function clickSubmit(id, name) {
+  alert(`Borrowed!`);
+  var startOfToday = new Date();
+  var priorDate = new Date(new Date().setDate(startOfToday.getDate() + 28));
+  priorDate.setHours(0,0,0,0);
+
+  const borrow = {
+    user: 'defaultuser' || undefined,
+    bookId: id || undefined,
+    date: priorDate || undefined,
+    renew: 0 || undefined,
+    title: name || undefined,
+  };
+  create(
+    {
+      borrowId: id,
+    },
+    borrow
+  ).then((data) => {
+    if (data && data.error) {
+      setValues({ ...values, error: data.error });
+    } else {
+      setValues({ ...values, userId: data._id, redirectToProfile: true });
+    }
+  });
+}
 
 export default function Lists() {
   const [books, setLists] = useState([]);
@@ -79,7 +108,7 @@ export default function Lists() {
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {books.map((item, i) => {
           return (
-            <Link component={RouterLink} to={"/api/books/" + item._id} key={i}>
+            <Link component={RouterLink} key={i}>
                 <Box
                   component="img"
                   sx={{
@@ -92,6 +121,7 @@ export default function Lists() {
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
                 <ImageListItemBar title={item.title} subtitle={<span>Author: {item.author}</span>} position="below" />
+                <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id, item.title)} className={classes.submit}>Borrow</Button>
             </Link>
           );
         })}

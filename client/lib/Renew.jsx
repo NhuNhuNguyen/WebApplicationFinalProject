@@ -71,21 +71,6 @@ function clickSubmit(id) {
       setValues({ ...values, userId: data._id, redirectToProfile: true });
     }
   });
-
-
-
-  update(
-    {
-      borrowId: id,
-    }
-  ).then((data) => {
-    if (data && data.error) {
-      alert(data)
-      setValues({ ...values, error: data.error });
-    } else {
-      setValues({ ...values, userId: data._id, redirectToProfile: true });
-    }
-  });
 }
 // const clickSubmit = () => {
 //   console.log("click...............")
