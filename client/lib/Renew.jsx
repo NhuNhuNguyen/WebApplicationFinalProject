@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 
 const clickSubmit = () => {
   console.log("click...............")
-  alert('clcik ')
+  alert('Renewed ')
 }
 
 export default function Borrows() {
