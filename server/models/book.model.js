@@ -15,7 +15,7 @@ const BookSchema = new mongoose.Schema({
     trim: true,
   },
   rating: {
-    type: Decimal128,
+    type: Number,
     trim: true,
   },
   description: {

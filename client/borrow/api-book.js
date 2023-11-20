@@ -42,7 +42,7 @@ const read = async (params, credentials, signal) => {
   }
 };
 const read2 = async (book, signal) => {
-  alert('sss2ppp');
+  alert('read2');
   try {
     let response = await fetch("/api/booksT/" + book.bookTitle, {
       method: "GET",
@@ -55,6 +55,7 @@ const read2 = async (book, signal) => {
     });
     return await response.json();
   } catch (err) {
+    alert('read2 err ' +err);
     console.log(err);
   }
 };

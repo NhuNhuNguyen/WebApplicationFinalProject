@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions'
@@ -8,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { read2 } from "../borrow/api-book.js";
+import { list } from "../borrow/api-book.js";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -26,29 +27,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Home() {
+
+  const [books, setBorrows] = useState([]);
+  
   const clickSubmit = () => {
     console.log("click...............")
-  }
-  const handleChange = name => event => {
-    
-    console.log("change..............");
+    alert('clcik ' +title.value)
     const book = {
-      bookTitle: event.target.value || undefdined
+      bookTitle: title.value || undefdined
     }
-    alert('s1f');
+
     const abortController = new AbortController();
     const signal = abortController.signal;
-    //list(signal).then((data) => {
-    read2(book, signal).then((data) => {
-      //alert('sss222d' +data)
+    list(signal).then((data) => {
+    // read2(book, signal).then((data) => {
       if (data.error) {
-        alert('sss1' +data)
         setValues({ ...values, error: data.error })
       } else {
         console.log(data)
-        alert('sss2' +data)
       }
     })
+  }
+  const handleChange = name => event => {
+    console.log("change..............");
+    
   }
   
   const classes = useStyles()
@@ -62,9 +64,12 @@ export default function Home() {
       <CardContent>
 
         <Typography variant="body2" component="p">
-          .
+        {books.map((item, i) => {
+          return (
+            item._id
+          );
+        })}
         </Typography>
-
       </CardContent>
       <CardActions>
         <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Borrow Now</Button>

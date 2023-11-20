@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
-import { list } from "../borrow/api-borrow.js";
+import { list } from "../borrow/api-book.js";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
@@ -52,8 +52,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Borrows() {
-  const [borrows, setBorrows] = useState([]);
+export default function Lists() {
+  const [books, setLists] = useState([]);
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -62,7 +62,7 @@ export default function Borrows() {
         console.log(data.error);
       } else {
         console.log(data);
-        setBorrows(data);
+        setLists(data);
       }
     });
     return function cleanup() {
@@ -77,7 +77,7 @@ export default function Borrows() {
         All Borrow
       </Typography>
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
-        {borrows.map((item, i) => {
+        {books.map((item, i) => {
           return (
             <Link component={RouterLink} to={"/borrow/" + item._id} key={i}>
                 <Box
@@ -91,7 +91,7 @@ export default function Borrows() {
                   alt="The house from the offer."
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
-                <ImageListItemBar title={item.title} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
+                <ImageListItemBar title={item._id} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
             </Link>
           );
         })}

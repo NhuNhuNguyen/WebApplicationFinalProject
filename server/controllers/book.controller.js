@@ -48,10 +48,11 @@ const bookByTitle = async (req, res, next, title) => {
         error: "Book not found",
       });
     req.profile = book;
+    alert('eeeeerbook ' +book);
     next();
   } catch (err) {
     return res.status("400").json({
-      error: "Could not retrieve book",
+      error: "Could not retrieve book " +err,
     });
   }
 };

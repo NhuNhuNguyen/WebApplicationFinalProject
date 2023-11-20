@@ -6,6 +6,7 @@ import compress from "compression";
 import cors from "cors";
 import helmet from "helmet";
 import borrowRoutes from "./routes/borrow.routes.js";
+import bookRoutes from "./routes/book.routes.js";
 
 const app = express();
 const CURRENT_WORKING_DIR = process.cwd();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./server/dist/app"));
 app.use("/", borrowRoutes);
+app.use("/", bookRoutes);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

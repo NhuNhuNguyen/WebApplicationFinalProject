@@ -17,6 +17,10 @@ const BorrowSchema = new mongoose.Schema({
   renew: {
     type: Number,
     trim: true,
+  },
+  title: {
+    type: String,
+    trim: true,
   }
 });
 
