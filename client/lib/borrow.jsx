@@ -32,7 +32,7 @@ export default function Home() {
   
   const clickSubmit = () => {
     console.log("click...............")
-    alert('clcik ' +title.value)
+    //alert('clcik ' +title.value)
     const book = {
       bookTitle: title.value || undefdined
     }

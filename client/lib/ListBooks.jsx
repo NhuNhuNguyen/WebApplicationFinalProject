@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
-import { list } from "../borrow/api-book.js";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
@@ -30,6 +29,7 @@ import Typography from "@material-ui/core/Typography";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 //import unicornbikeImg from "./../assets/images/unicornbikeImg.jpg";
 import bookImg from './../assets/images/book.png';
+import { list } from "../borrow/api-book.js";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -74,12 +74,12 @@ export default function Lists() {
   return (
     <Paper className={classes.root} elevation={4}>
       <Typography variant="h6" className={classes.title}>
-        All Borrow
+        All Books
       </Typography>
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {books.map((item, i) => {
           return (
-            <Link component={RouterLink} to={"/borrow/" + item._id} key={i}>
+            <Link component={RouterLink} to={"/api/books/" + item._id} key={i}>
                 <Box
                   component="img"
                   sx={{
@@ -88,10 +88,10 @@ export default function Lists() {
                     maxHeight: { xs: 233, md: 167 },
                     maxWidth: { xs: 350, md: 250 },
                   }}
-                  alt="The house from the offer."
+                  alt={item.title}
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
-                <ImageListItemBar title={item._id} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
+                <ImageListItemBar title={item.title} subtitle={<span>Author: {item.author}</span>} position="below" />
             </Link>
           );
         })}

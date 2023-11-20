@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
-import { list } from "../borrow/api-borrow.js";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
@@ -30,6 +29,7 @@ import Typography from "@material-ui/core/Typography";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 //import unicornbikeImg from "./../assets/images/unicornbikeImg.jpg";
 import bookImg from './../assets/images/book.png';
+import { list } from "../borrow/api-borrow.js";
 
 const useStyles = makeStyles((theme) => ({
   card: {
