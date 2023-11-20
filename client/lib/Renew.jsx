@@ -51,12 +51,13 @@ const useStyles = makeStyles(theme => ({
 
 
 function clickSubmit(id) {
-  alert(`Renewed`);
+  alert(`Renewed! Extended for an additional 28 days from today.`);
   var startOfToday = new Date();
-  startOfToday.setHours(0,0,0,0);
+  var priorDate = new Date(new Date().setDate(startOfToday.getDate() + 28));
+  priorDate.setHours(0,0,0,0);
 
   const borrow = {
-    date: startOfToday || undefined,
+    date: priorDate || undefined,
   };
   update(
     {

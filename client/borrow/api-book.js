@@ -41,10 +41,10 @@ const read = async (params, credentials, signal) => {
     console.log(err);
   }
 };
-const read2 = async (book, signal) => {
+const read2 = async (params, signal) => {
   alert('read2');
   try {
-    let response = await fetch("/api/booksT/" + book.bookTitle, {
+    let response = await fetch("/api/booksT/" + params.bookTitle, {
       method: "GET",
       signal: signal,
       headers: {

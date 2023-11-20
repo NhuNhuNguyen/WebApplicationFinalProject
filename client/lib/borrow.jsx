@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import { list } from "../borrow/api-book.js";
+import { read2 } from "../borrow/api-book.js";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -39,11 +39,13 @@ export default function Home() {
 
     const abortController = new AbortController();
     const signal = abortController.signal;
-    list(signal).then((data) => {
-    // read2(book, signal).then((data) => {
+    //list(signal).then((data) => {
+    read2(bookTitle, signal).then((data) => {
       if (data.error) {
+        alert('a');
         setValues({ ...values, error: data.error })
       } else {
+        alert('b');
         console.log(data)
       }
     })
