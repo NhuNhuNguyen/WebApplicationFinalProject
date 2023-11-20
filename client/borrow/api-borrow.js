@@ -57,14 +57,15 @@ const update = async (params, credentials, borrow) => {
     console.log(err);
   }
 };
-const remove = async (params, credentials) => {
+//const remove = async (params, credentials) => {
+const remove = async (params) => {
   try {
     let response = await fetch("/api/borrows/" + params.borrowId, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "Bearer " + credentials.t,
+        //Authorization: "Bearer " + credentials.t,
       },
     });
     return await response.json();
