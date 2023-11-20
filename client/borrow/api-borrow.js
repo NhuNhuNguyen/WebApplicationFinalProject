@@ -41,14 +41,15 @@ const read = async (params, credentials, signal) => {
     console.log(err);
   }
 };
-const update = async (params, credentials, borrow) => {
+//const update = async (params, credentials, borrow) => {
+const update = async (params, borrow) => {
   try {
     let response = await fetch("/api/borrows/" + params.borrowId, {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "Bearer " + credentials.t,
+        //Authorization: "Bearer " + credentials.t,
       },
       body: JSON.stringify(borrow),
     });

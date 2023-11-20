@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
-import { list } from "../borrow/api-borrow.js";
+
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
@@ -31,32 +31,65 @@ import Typography from "@material-ui/core/Typography";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 //import unicornbikeImg from "./../assets/images/unicornbikeImg.jpg";
 import bookImg from './../assets/images/book.png';
+import { list } from "../borrow/api-borrow.js";
+import { update } from "../borrow/api-borrow.js";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   card: {
-    // Define your card styles here
-  },
-  textField: {
-    // Define your text field styles here
-  },
-  error: {
-    // Define your error icon styles here
-  },
-  submit: {
-    // Define your submit button styles here
+    maxWidth: 600,
+    margin: 'auto',
+    marginTop: theme.spacing(5),
   },
   title: {
-    // Define your title styles here
+    padding: theme.spacing(3, 2.5, 2),
+    color: theme.palette.openTitle,
   },
-  root: {
-    // Define your root styles here
+  media: {
+    minHeight: 400,
   },
 }));
 
-const clickSubmit = () => {
-  console.log("click...............")
-  alert('Renewed ')
+
+function clickSubmit(id) {
+  alert(`Renewed`);
+  var startOfToday = new Date();
+  startOfToday.setHours(0,0,0,0);
+
+  const borrow = {
+    date: startOfToday || undefined,
+  };
+  update(
+    {
+      borrowId: id,
+    },
+    borrow
+  ).then((data) => {
+    if (data && data.error) {
+      setValues({ ...values, error: data.error });
+    } else {
+      setValues({ ...values, userId: data._id, redirectToProfile: true });
+    }
+  });
+
+
+
+  update(
+    {
+      borrowId: id,
+    }
+  ).then((data) => {
+    if (data && data.error) {
+      alert(data)
+      setValues({ ...values, error: data.error });
+    } else {
+      setValues({ ...values, userId: data._id, redirectToProfile: true });
+    }
+  });
 }
+// const clickSubmit = () => {
+//   console.log("click...............")
+//   alert('Returned ')
+// }
 
 export default function Borrows() {
   const [borrows, setBorrows] = useState([]);
@@ -85,7 +118,7 @@ export default function Borrows() {
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {borrows.map((item, i) => {
           return (
-            <Link component={RouterLink} to={"/borrow/" + item._id} key={i}>
+            <Link component={RouterLink}  key={i}>
                 <Box
                   component="img"
                   sx={{
@@ -98,7 +131,7 @@ export default function Borrows() {
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
                 <ImageListItemBar title={item.title} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
-                <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Renew</Button>
+                <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.submit}>Renew</Button>
             </Link>
           );
         })}
