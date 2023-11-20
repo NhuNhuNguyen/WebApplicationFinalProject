@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 
 
 function clickSubmit(id) {
-  alert(`Renewed! Extended for an additional 28 days from today.`);
+  alert(`Renewed! Extended for an additional 28 days from today. Please refresh the web page.`);
   var startOfToday = new Date();
   var priorDate = new Date(new Date().setDate(startOfToday.getDate() + 28));
   priorDate.setHours(0,0,0,0);
