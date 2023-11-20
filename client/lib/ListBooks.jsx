@@ -68,9 +68,6 @@ function clickSubmit(id, name) {
     title: name || undefined,
   };
   create(
-    {
-      borrowId: id,
-    },
     borrow
   ).then((data) => {
     if (data && data.error) {
