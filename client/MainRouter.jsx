@@ -5,6 +5,7 @@ import Menu from "./core/Menu";
 import Borrow from "./lib/Borrow.jsx";
 import MyAccount from "./lib/MyAccount.jsx";
 import ListBooks from "./lib/ListBooks.jsx";
+import Home2 from "./core/Home2.jsx";
 import RenewBook from "./lib/Renew.jsx";
 import ReturnBook from "./lib/Return.jsx";
 
@@ -14,10 +15,11 @@ function MainRouter() {
       <Menu />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/test" element={<Home />} />
         <Route path="/borrow" element={<Borrow />} />
         <Route path="/myaccount" element={<MyAccount />} />
         <Route path="/listbooks" element={<ListBooks />} />
+        <Route path="/" element={<Home2 />} />
         <Route path="/renew" element={<RenewBook />} />
         <Route path="/return" element={<ReturnBook />} />
       </Routes>
