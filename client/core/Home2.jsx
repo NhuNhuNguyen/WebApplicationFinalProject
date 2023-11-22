@@ -104,7 +104,7 @@ export default function Lists() {
   return (
     <Paper className={classes.root} elevation={4}>
           <Card className={classes.card}>
-    <Typography variant="h6" className={classes.title}>Welcome to Web Ninja's Library</Typography>
+    <Typography variant="h4" className={classes.title}>Welcome to Web Ninja's Library</Typography>
     <Box
     component="img"
     sx={{
@@ -117,6 +117,7 @@ export default function Lists() {
     src={`${weblogo}?w=260&fit=crop&auto=format&dpr=2 2x`}
     />
     </Card>
+    <Typography variant="h4" className={classes.title}>Collections of books</Typography>
       <ImageList sx={{ width: 500, height: 450, margin: "auto" }} variant="quilted" cols={3} rowHeight={200} >
         {books.map((item, i) => {
           return (
