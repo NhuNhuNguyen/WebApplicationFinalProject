@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Box from "@material-ui/core/Box";
 import weblogo_s from './../assets/images/logo_s.png';
-
+import auth from '../lib/auth-helper';
 
 const isActive = (location, path) => {
   return location.pathname === path ? { color: '#ff4081' } : { color: '#ffffff' };
@@ -61,6 +61,10 @@ export default function Menu(){
       <Link to="/return">
         <Button style={isActive(location, "/return")}>Return</Button>
       </Link>
+          <Link to="/signin">
+            <Button style={isActive(location, "/signin")}>Sign In
+            </Button>
+          </Link>
     </Toolbar>
   </AppBar>
 );
