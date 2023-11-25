@@ -39,12 +39,22 @@ export default function Menu(){
           <HomeIcon/>
         </IconButton>
       </Link>
-      <Link to="/users">
-        <Button style={isActive(location, "/users")}>Users</Button>
-      </Link>
-      <Link to="/signup">
+      {
+        !auth.isAuthenticated() && (<span>
+          <Link to="/signup">
             <Button style={isActive(location, "/signup")}>Sign up
             </Button>
+          </Link>
+          <Link to="/signin">
+            <Button style={isActive(location, "/signin")}>Sign In
+            </Button>
+          </Link>
+        </span>)
+      }
+      {
+        auth.isAuthenticated() && (<span>
+      <Link to="/users">
+        <Button style={isActive(location, "/users")}>Users</Button>
       </Link>
       <Link to="/listbooks">
         <Button style={isActive(location, "/listbooks")}>Borrow</Button>
@@ -52,19 +62,17 @@ export default function Menu(){
       <Link to="/myaccount">
         <Button style={isActive(location, "/myaccount")}>My Account</Button>
       </Link>
-      {/* <Link to="/borrow">
-        <Button style={isActive(location, "/borrow")}>Borrow</Button>
-      </Link> */}
       <Link to="/renew">
         <Button style={isActive(location, "/renew")}>Renew</Button>
       </Link>
       <Link to="/return">
         <Button style={isActive(location, "/return")}>Return</Button>
       </Link>
-          <Link to="/signin">
-            <Button style={isActive(location, "/signin")}>Sign In
-            </Button>
-          </Link>
+          <Button color="inherit" onClick={() => {
+               auth.clearJWT(() => navigate('/'));
+            }}>Sign out</Button>
+        </span>)
+      }
     </Toolbar>
   </AppBar>
 );
