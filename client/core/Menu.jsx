@@ -39,6 +39,13 @@ export default function Menu(){
           <HomeIcon/>
         </IconButton>
       </Link>
+      <Link to="/users">
+        <Button style={isActive(location, "/users")}>Users</Button>
+      </Link>
+      <Link to="/signup">
+            <Button style={isActive(location, "/signup")}>Sign up
+            </Button>
+      </Link>
       <Link to="/listbooks">
         <Button style={isActive(location, "/listbooks")}>Borrow</Button>
       </Link>

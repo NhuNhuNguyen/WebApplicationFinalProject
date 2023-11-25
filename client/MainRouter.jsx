@@ -1,6 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./core/Home";
+import Users from "./user/Users.jsx";
+import Signup from "./user/Signup.jsx";
 import Menu from "./core/Menu";
 import Borrow from "./lib/Borrow.jsx";
 import MyAccount from "./lib/MyAccount.jsx";
@@ -16,6 +18,8 @@ function MainRouter() {
 
       <Routes>
         <Route path="/test" element={<Home />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/borrow" element={<Borrow />} />
         <Route path="/myaccount" element={<MyAccount />} />
         <Route path="/listbooks" element={<ListBooks />} />
