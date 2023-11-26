@@ -11,6 +11,7 @@ import Home2 from "./core/Home.jsx";
 import RenewBook from "./lib/Renew.jsx";
 import ReturnBook from "./lib/Return.jsx";
 import Signin from "./lib/Signin.jsx";
+import Profile from "./user/Profile.jsx";
 
 function MainRouter() {
   return (
@@ -28,6 +29,7 @@ function MainRouter() {
         <Route path="/renew" element={<RenewBook />} />
         <Route path="/return" element={<ReturnBook />} />
         <Route path="/signin" element={<Signin />} />
+        <Route path="/user/:userId" element={<Profile />} />
       </Routes>
     </div>
   );

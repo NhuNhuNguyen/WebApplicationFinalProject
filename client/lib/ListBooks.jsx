@@ -61,7 +61,7 @@ function clickSubmit(id, name) {
   priorDate.setHours(0,0,0,0);
 
   const borrow = {
-    user: 'defaultuser' || undefined,
+    user: 'userId' || undefined,
     bookId: id || undefined,
     date: priorDate || undefined,
     renew: 0 || undefined,
