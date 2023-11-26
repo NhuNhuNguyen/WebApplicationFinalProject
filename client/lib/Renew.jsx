@@ -113,7 +113,7 @@ export default function Borrows() {
                     maxHeight: { xs: 233, md: 167 },
                     maxWidth: { xs: 350, md: 250 },
                   }}
-                  alt="The house from the offer."
+                  alt={item.title}
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
                 <ImageListItemBar title={item.title} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />

@@ -68,7 +68,7 @@ export default function Users() {
       <List dense>
         {users.map((item, i) => {
           return (
-            <Link component={RouterLink} to={"/user/" + item._id} key={i}>
+            <Link component={RouterLink} to={"/api/users/" + item._id} key={i}>
               <ListItem button>
                 <ListItemAvatar>
                   <Avatar></Avatar>

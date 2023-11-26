@@ -34,6 +34,8 @@ import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-borrow.js";
 import { remove } from "../borrow/api-borrow.js";
 
+import auth from "../lib/auth-helper.js";
+
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 600,
@@ -51,14 +53,15 @@ const useStyles = makeStyles(theme => ({
 
 
 function clickSubmit(id) {
+  const jwt = auth.isAuthenticated();
   alert(`Returned`);
   remove(
     {
       borrowId: id,
-    }
+    },
+    { t: jwt.token }
   ).then((data) => {
     if (data && data.error) {
-      alert(data)
       setValues({ ...values, error: data.error });
     } else {
       setValues({ ...values, userId: data._id, redirectToProfile: true });
@@ -72,6 +75,7 @@ function clickSubmit(id) {
 
 export default function Borrows() {
   const [borrows, setBorrows] = useState([]);
+  
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -106,7 +110,7 @@ export default function Borrows() {
                     maxHeight: { xs: 233, md: 167 },
                     maxWidth: { xs: 350, md: 250 },
                   }}
-                  alt="The house from the offer."
+                  alt={item.title}
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
                 <ImageListItemBar title={item.title} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
