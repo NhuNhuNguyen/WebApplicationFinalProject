@@ -25,11 +25,7 @@ import Button from '@material-ui/core/Button';
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
-//import Person from '@material-ui/core/Person'
-//import ArrowForward from '@material-ui/core/ArrowForward'
-//import ArrowForward from '@material-ui/core/ArrowForward'
 import ArrowForward from "@material-ui/icons/ArrowForward";
-//import unicornbikeImg from "./../assets/images/unicornbikeImg.jpg";
 import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-book.js";
 
@@ -55,17 +51,6 @@ return (
 <Card className={classes.card}>
    
   <Typography variant="h6" className={classes.title}>Welcome to Web Ninja's Library</Typography>
-  <Box
-  component="img"
-  sx={{
-    height: 260,
-    width: 260,
-    maxHeight: { xs: 260, md: 260 },
-    maxWidth: { xs: 260, md: 260 },
-  }}
-  alt="Web Ninja's Library."
-  src={`${weblogo}?w=260&fit=crop&auto=format&dpr=2 2x`}
-  />
 
 <CardMedia className={classes.media}/>
 <CardContent>

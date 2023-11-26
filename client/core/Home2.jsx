@@ -105,17 +105,6 @@ export default function Lists() {
     <Paper className={classes.root} elevation={4}>
           <Card className={classes.card}>
     <Typography variant="h4" className={classes.title}>Welcome to Web Ninja's Library</Typography>
-    <Box
-    component="img"
-    sx={{
-      height: 260,
-      width: 260,
-      maxHeight: { xs: 260, md: 260 },
-      maxWidth: { xs: 260, md: 260 },
-    }}
-    alt="Web Ninja's Library."
-    src={`${weblogo}?w=260&fit=crop&auto=format&dpr=2 2x`}
-    />
     </Card>
     <Typography variant="h4" className={classes.title}>Collections of books</Typography>
       <ImageList sx={{ width: 500, height: 450, margin: "auto" }} variant="quilted" cols={3} rowHeight={200} >
