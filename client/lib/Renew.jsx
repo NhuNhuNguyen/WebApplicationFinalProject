@@ -33,6 +33,7 @@ import ArrowForward from "@material-ui/icons/ArrowForward";
 import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-borrow.js";
 import { update } from "../borrow/api-borrow.js";
+import auth from "../lib/auth-helper.js";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -51,6 +52,7 @@ const useStyles = makeStyles(theme => ({
 
 
 function clickSubmit(id) {
+  const jwt = auth.isAuthenticated();
   alert(`Renewed! Extended for an additional 28 days from today. Please refresh the web page.`);
   var startOfToday = new Date();
   var priorDate = new Date(new Date().setDate(startOfToday.getDate() + 28));
@@ -63,6 +65,7 @@ function clickSubmit(id) {
     {
       borrowId: id,
     },
+    { t: jwt.token },
     borrow
   ).then((data) => {
     if (data && data.error) {

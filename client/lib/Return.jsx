@@ -33,7 +33,6 @@ import ArrowForward from "@material-ui/icons/ArrowForward";
 import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-borrow.js";
 import { remove } from "../borrow/api-borrow.js";
-
 import auth from "../lib/auth-helper.js";
 
 const useStyles = makeStyles(theme => ({
@@ -68,10 +67,6 @@ function clickSubmit(id) {
     }
   });
 }
-// const clickSubmit = () => {
-//   console.log("click...............")
-//   alert('Returned ')
-// }
 
 export default function Borrows() {
   const [borrows, setBorrows] = useState([]);
