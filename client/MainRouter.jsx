@@ -7,7 +7,7 @@ import Menu from "./core/Menu";
 import Borrow from "./lib/Borrow.jsx";
 import MyAccount from "./lib/MyAccount.jsx";
 import ListBooks from "./lib/ListBooks.jsx";
-import Home2 from "./core/Home2.jsx";
+import Home2 from "./core/Home.jsx";
 import RenewBook from "./lib/Renew.jsx";
 import ReturnBook from "./lib/Return.jsx";
 import Signin from "./lib/Signin.jsx";
