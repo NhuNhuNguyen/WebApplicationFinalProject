@@ -11,6 +11,7 @@ import auth from './auth-helper.js'
 import { Navigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 import { signin } from './api-auth.js'
+import { ReactSession }  from 'react-client-session';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -61,6 +62,8 @@ export default function Signin(props) {
       } else {
         console.log(data)
         auth.authenticate(data, () => {
+          //alert(values.name);
+          ReactSession.set("username", values.email);
           setValues({ ...values, error: '', redirectToReferrer: true })
         })
       }

@@ -14,6 +14,7 @@ import Signin from "./lib/Signin.jsx";
 import Profile from "./user/Profile.jsx";
 import PrivateRoute from "./lib/PrivateRoute.jsx";
 import EditProfile from "./user/EditProfile.jsx";
+import DetailBook from "./lib/DetailBook.jsx";
 
 function MainRouter() {
   return (
@@ -32,6 +33,7 @@ function MainRouter() {
         <Route path="/return" element={<ReturnBook />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/user/:userId" element={<Profile />} />
+        <Route path="/book/:bookId" element={<DetailBook />} />
         
         <Route
           path="/user/edit/:userId"

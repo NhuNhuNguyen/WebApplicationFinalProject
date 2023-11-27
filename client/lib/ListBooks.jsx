@@ -105,7 +105,7 @@ export default function Lists() {
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {books.map((item, i) => {
           return (
-            <Link component={RouterLink} key={i}>
+            <Link component={RouterLink} to={"/book/" + item._id} key={i}>
                 <Box
                   component="img"
                   sx={{
