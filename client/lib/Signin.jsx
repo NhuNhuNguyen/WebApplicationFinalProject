@@ -67,6 +67,14 @@ export default function Signin(props) {
     })
   }
 
+  function handleKeyUp(event) {
+    // Enter
+    if (event.keyCode === 13) {
+      //ref.current.submit();
+      clickSubmit();
+    }
+  }
+
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value })
   }
@@ -84,10 +92,12 @@ export default function Signin(props) {
 
   return (
     <Card className={classes.card}>
+      <form onKeyUp={handleKeyUp}>
       <CardContent>
         <Typography variant="h6" className={classes.title}>
           Sign In
         </Typography>
+        
         <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal" /><br />
         <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal" />
         <br /> {
@@ -97,9 +107,11 @@ export default function Signin(props) {
           </Typography>)
         }
       </CardContent>
+      
       <CardActions>
         <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
       </CardActions>
+      </form>
     </Card>
   )
 }
