@@ -61,20 +61,45 @@ export default function Signup() {
     setOpen(false);
   };
 
-  const clickSubmit = () => {
-    const user = {
-      name: values.name || undefined,
-      email: values.email || undefined,
-      password: values.password || undefined,
-    };
+  function validateEmail(emailField){
+    var reg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    create(user).then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setOpen(true);
-      }
-    });
+    if (reg.test(emailField) == false) {
+        alert('Invalid Email Address');
+        return false;
+    }
+    return true;
+  }
+
+  function validatePassword(password) {
+    // At least 6 characters long, 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character
+    var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (regex.test(password)) {
+        return true;
+    } else {
+        alert('Password must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters');
+        return false;
+    }
+  }
+
+  const clickSubmit = () => {
+    var result1 = validateEmail(values.email);
+    var result2 = validatePassword(values.password);
+    if (result1 && result2){
+        const user = {
+        name: values.name || undefined,
+        email: values.email || undefined,
+        password: values.password || undefined,
+      };
+
+      create(user).then((data) => {
+        if (data.error) {
+          setValues({ ...values, error: data.error });
+        } else {
+          setOpen(true);
+        }
+      });
+    }
   };
 
   Signup.propTypes = {

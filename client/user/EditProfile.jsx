@@ -73,27 +73,52 @@ export default function EditProfile({ match }) {
     };
   }, [userId]);
 
+  function validateEmail(emailField){
+    var reg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (reg.test(emailField) == false) {
+        alert('Invalid Email Address');
+        return false;
+    }
+    return true;
+  }
+
+  function validatePassword(password) {
+    // At least 6 characters long, 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character
+    var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (regex.test(password)) {
+        return true;
+    } else {
+        alert('Password must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters');
+        return false;
+    }
+  }
+
   const clickSubmit = () => {
-    const user = {
-      name: values.name || undefined,
-      email: values.email || undefined,
-      password: values.password || undefined,
-    };
-    update(
-      {
-        userId: userId,
-      },
-      {
-        t: jwt.token,
-      },
-      user
-    ).then((data) => {
-      if (data && data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setValues({ ...values, userId: data._id, redirectToProfile: true });
-      }
-    });
+    var result1 = validateEmail(values.email);
+    var result2 = validatePassword(values.password);
+    if (result1 && result2){
+      const user = {
+        name: values.name || undefined,
+        email: values.email || undefined,
+        password: values.password || undefined,
+      };
+      update(
+        {
+          userId: userId,
+        },
+        {
+          t: jwt.token,
+        },
+        user
+      ).then((data) => {
+        if (data && data.error) {
+          setValues({ ...values, error: data.error });
+        } else {
+          setValues({ ...values, userId: data._id, redirectToProfile: true });
+        }
+      });
+    }
   };
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
