@@ -16,6 +16,7 @@ import PrivateRoute from "./lib/PrivateRoute.jsx";
 import EditProfile from "./user/EditProfile.jsx";
 import DetailBook from "./lib/DetailBook.jsx";
 import HomeDetail from "./lib/HomeDetail.jsx";
+import AddItem from "./book/AddItem.jsx";
 
 function MainRouter() {
   return (
@@ -36,6 +37,7 @@ function MainRouter() {
         <Route path="/user/:userId" element={<Profile />} />
         <Route path="/book/:bookId" element={<DetailBook />} />
         <Route path="/bookPub/:bookId" element={<HomeDetail />} />
+        <Route path="/addItem" element={<AddItem />} />
         
         <Route
           path="/user/edit/:userId"

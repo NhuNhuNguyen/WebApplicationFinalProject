@@ -68,6 +68,9 @@ export default function Menu(){
       <Link to="/return">
         <Button style={isActive(location, "/return")}>Return</Button>
       </Link>
+      <Link to="/addItem">
+        <Button style={isActive(location, "/addItem")}>Add Book</Button>
+      </Link>
           <Button color="inherit" onClick={() => {
                auth.clearJWT(() => navigate('/'));
             }}>Sign out</Button>
