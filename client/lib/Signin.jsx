@@ -44,10 +44,10 @@ export default function Signin(props) {
   console.log(location.state)
   const classes = useStyles()
   const [values, setValues] = useState({
-    email: '',
-    password: '',
-    error: '',
-    redirectToReferrer: false
+//    email: '',
+//    password: '',
+//    error: '',
+//    redirectToReferrer: false
   })
 
   const clickSubmit = () => {
@@ -62,8 +62,8 @@ export default function Signin(props) {
       } else {
         console.log(data)
         auth.authenticate(data, () => {
-          //alert(values.name);
-          ReactSession.set("username", values.email);
+          //alert(values._id);
+          ReactSession.set("username", data.user._id);
           setValues({ ...values, error: '', redirectToReferrer: true })
         })
       }

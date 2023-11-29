@@ -35,6 +35,8 @@ import { list } from "../borrow/api-borrow.js";
 import { update } from "../borrow/api-borrow.js";
 import auth from "../lib/auth-helper.js";
 
+import { ReactSession }  from 'react-client-session';
+
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 600,
@@ -50,6 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+var userId = ReactSession.get("username");
 
 function clickSubmit(id) {
   const jwt = auth.isAuthenticated();
@@ -99,6 +102,7 @@ export default function Borrows() {
   }, []);
 
   const classes = useStyles();
+  
   return (
     <Paper className={classes.root} elevation={4}>
       <Typography variant="h6" className={classes.title}>
@@ -106,6 +110,7 @@ export default function Borrows() {
       </Typography>
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {borrows.map((item, i) => {
+          if (item.user == userId){
           return (
             <div>
             <Link component={RouterLink} to={"/book/" + item.bookId} key={i}>
@@ -126,6 +131,7 @@ export default function Borrows() {
             <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.submit}>Renew</Button>
             </div>
           );
+          }
         })}
       </ImageList>
     </Paper>

@@ -25,6 +25,22 @@ const list = async (signal) => {
     console.log(err);
   }
 };
+const listByUser = async (params, credentials, signal) => {
+  try {
+    let response = await fetch("/api/borrows/"  + params.userId, {
+      method: "GET",
+      signal: signal,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + credentials.t,
+      },
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
 const read = async (params, credentials, signal) => {
   try {
     let response = await fetch("/api/borrows/" + params.borrowId, {
@@ -74,4 +90,4 @@ const remove = async (params, credentials) => {
     console.log(err);
   }
 };
-export { create, list, read, update, remove };
+export { create, list, listByUser, read, update, remove };

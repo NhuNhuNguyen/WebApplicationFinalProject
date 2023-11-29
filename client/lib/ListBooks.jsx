@@ -33,6 +33,8 @@ import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-book.js";
 import { create } from "../borrow/api-borrow.js";
 
+import { ReactSession }  from 'react-client-session';
+
 const useStyles = makeStyles((theme) => ({
   card: {
     // Define your card styles here
@@ -55,13 +57,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function clickSubmit(id, name) {
+  var userId = ReactSession.get("username");
   alert(`Borrowed!`);
   var startOfToday = new Date();
   var priorDate = new Date(new Date().setDate(startOfToday.getDate() + 28));
   priorDate.setHours(0,0,0,0);
 
   const borrow = {
-    user: 'userId' || undefined,
+    user: userId || undefined,
     bookId: id || undefined,
     date: priorDate || undefined,
     renew: 0 || undefined,

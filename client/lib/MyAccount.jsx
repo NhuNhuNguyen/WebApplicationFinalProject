@@ -31,6 +31,8 @@ import ArrowForward from "@material-ui/icons/ArrowForward";
 import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-borrow.js";
 
+import { ReactSession }  from 'react-client-session';
+
 const useStyles = makeStyles((theme) => ({
   card: {
     // Define your card styles here
@@ -51,6 +53,8 @@ const useStyles = makeStyles((theme) => ({
     // Define your root styles here
   },
 }));
+
+var userId = ReactSession.get("username");
 
 export default function Borrows() {
   const [borrows, setBorrows] = useState([]);
@@ -78,6 +82,7 @@ export default function Borrows() {
       </Typography>
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {borrows.map((item, i) => {
+          if (item.user == userId){
           return (
             <div>
             <Link component={RouterLink} to={"/book/" + item.bookId} key={i}>
@@ -96,6 +101,7 @@ export default function Borrows() {
             </Link>
             </div>
           );
+          }
         })}
       </ImageList>
     </Paper>
