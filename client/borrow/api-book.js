@@ -41,6 +41,22 @@ const read = async (params, credentials, signal) => {
     console.log(err);
   }
 };
+const readFromPub = async (params) => {
+  try {
+    let response = await fetch("/api/books/" + params.bookId, {
+      method: "GET",
+      //signal: signal,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        //Authorization: "Bearer " + credentials.t,
+      },
+    });
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
+};
 const read2 = async (params, signal) => {
   alert('read2');
   try {
@@ -90,4 +106,4 @@ const remove = async (params, credentials) => {
     console.log(err);
   }
 };
-export { create, list, read, read2, update, remove };
+export { create, list, read, read2, readFromPub, update, remove };

@@ -5,7 +5,8 @@ const router = express.Router();
 router.route("/api/books").get(bookCtrl.list).post(bookCtrl.create);
  router
    .route("/api/books/:bookId")
-   .get(authCtrl.requireSignin, bookCtrl.read)
+  //  .get(authCtrl.requireSignin, bookCtrl.read)
+   .get(bookCtrl.read)
    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, bookCtrl.update)
    .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, bookCtrl.remove);
 router.param("bookId", bookCtrl.bookByID);

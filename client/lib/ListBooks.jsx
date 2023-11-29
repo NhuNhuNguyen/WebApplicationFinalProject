@@ -105,6 +105,7 @@ export default function Lists() {
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {books.map((item, i) => {
           return (
+            <div>
             <Link component={RouterLink} to={"/book/" + item._id} key={i}>
                 <Box
                   component="img"
@@ -118,8 +119,10 @@ export default function Lists() {
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
                 <ImageListItemBar title={item.title} subtitle={<span>Author: {item.author}</span>} position="below" />
-                <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id, item.title)} className={classes.submit}>Borrow</Button>
+                
             </Link>
+            <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id, item.title)} className={classes.submit}>Borrow</Button>
+            </div>
           );
         })}
       </ImageList>

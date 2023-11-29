@@ -110,7 +110,7 @@ export default function Lists() {
       <ImageList sx={{ width: 500, height: 450, margin: "auto" }} variant="quilted" cols={3} rowHeight={200} >
         {books.map((item, i) => {
           return (
-            <Link component={RouterLink} key={i}>
+            <Link component={RouterLink} to={"/bookPub/" + item._id} key={i}>
               <td>
                 <Box
                   component="img"

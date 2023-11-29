@@ -96,7 +96,8 @@ export default function Borrows() {
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {borrows.map((item, i) => {
           return (
-            <Link component={RouterLink}  key={i}>
+            <div>
+            <Link component={RouterLink} to={"/book/" + item.bookId} key={i}>
                 <Box
                   component="img"
                   sx={{
@@ -109,8 +110,10 @@ export default function Borrows() {
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
                 <ImageListItemBar title={item.title} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
-                <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.submit}>Return</Button>
+                
             </Link>
+            <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.submit}>Return</Button>
+            </div>
           );
         })}
       </ImageList>
