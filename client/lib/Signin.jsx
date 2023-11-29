@@ -105,7 +105,7 @@ export default function Signin(props) {
         <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal" />
         <br /> {
           values.error && (<Typography component="p" color="error">
-            <Icon color="error" className={classes.error}>error</Icon>
+            <Icon color="error" className={classes.error}></Icon>
             {values.error}
           </Typography>)
         }

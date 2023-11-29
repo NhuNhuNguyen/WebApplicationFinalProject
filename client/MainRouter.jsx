@@ -17,6 +17,7 @@ import EditProfile from "./user/EditProfile.jsx";
 import DetailBook from "./lib/DetailBook.jsx";
 import HomeDetail from "./lib/HomeDetail.jsx";
 import AddItem from "./book/AddItem.jsx";
+import UpdateItem from "./book/UpdateItem.jsx";
 
 function MainRouter() {
   return (
@@ -38,6 +39,7 @@ function MainRouter() {
         <Route path="/book/:bookId" element={<DetailBook />} />
         <Route path="/bookPub/:bookId" element={<HomeDetail />} />
         <Route path="/addItem" element={<AddItem />} />
+        <Route path="/updateItem/:bookId" element={<UpdateItem />} />
         
         <Route
           path="/user/edit/:userId"

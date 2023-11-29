@@ -33,6 +33,7 @@ import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-book.js";
 import { create } from "../borrow/api-borrow.js";
 
+import auth from '../lib/auth-helper';
 import { ReactSession }  from 'react-client-session';
 
 const useStyles = makeStyles((theme) => ({
@@ -125,6 +126,10 @@ export default function Lists() {
                 
             </Link>
             <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id, item.title)} className={classes.submit}>Borrow</Button>
+            {
+            auth.isAuthenticated() && (
+            <Link component={RouterLink} to={"/updateItem/" + item._id} key={i}><Button color="primary" variant="contained" >Modify</Button></Link> )
+            }
             </div>
           );
         })}
