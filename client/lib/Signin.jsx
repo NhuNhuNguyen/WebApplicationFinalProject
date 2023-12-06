@@ -62,7 +62,6 @@ export default function Signin(props) {
       } else {
         console.log(data)
         auth.authenticate(data, () => {
-          //alert(values._id);
           ReactSession.set("username", data.user._id);
           setValues({ ...values, error: '', redirectToReferrer: true })
         })
@@ -90,7 +89,6 @@ export default function Signin(props) {
   const { redirectToReferrer } = values
   if (redirectToReferrer) {
     return <Navigate to={from} />;
-
   }
 
   return (

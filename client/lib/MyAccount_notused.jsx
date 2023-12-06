@@ -2,13 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { format } from 'date-fns'
 
-import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
-
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
@@ -18,7 +16,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItemBar from "@material-ui/core/ImageListItemBar";
-import Button from '@material-ui/core/Button';
 
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
@@ -33,41 +30,34 @@ import ArrowForward from "@material-ui/icons/ArrowForward";
 //import unicornbikeImg from "./../assets/images/unicornbikeImg.jpg";
 import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-borrow.js";
-import { update, remove } from "../borrow/api-borrow.js";
-import auth from "../lib/auth-helper.js";
 
 import { ReactSession }  from 'react-client-session';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: 600,
-    margin: 'auto',
-    marginTop: theme.spacing(5),
+    // Define your card styles here
+  },
+  textField: {
+    // Define your text field styles here
+  },
+  error: {
+    // Define your error icon styles here
+  },
+  submit: {
+    // Define your submit button styles here
   },
   title: {
-    padding: theme.spacing(3, 2.5, 2),
-    color: theme.palette.openTitle,
+    // Define your title styles here
   },
-  media: {
-    minHeight: 400,
+  root: {
+    // Define your root styles here
   },
 }));
 
+var userId = ReactSession.get("username");
+
 export default function Borrows() {
   const [borrows, setBorrows] = useState([]);
-  const [values, setValues] = useState({
-    name: "",
-    password: "",
-    email: "",
-    open: false,
-    error: "",
-    redirectToProfile: false,
-  });
-  var userId = ReactSession.get("username");
-  //if (userId == null){
-  //    auth.simpleClearJWT();
-  //    return <Navigate to={"/"} />;
-  //}
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -82,37 +72,9 @@ export default function Borrows() {
     return function cleanup() {
       abortController.abort();
     };
-  }, [userId]);
+  }, []);
 
   const classes = useStyles();
-
-  //const clickSubmit_return = () => {
-  function clickSubmit_return(id) {
-    alert(`Returned`);
-
-    //return <Navigate to={"/usereeee"} />;
-    const jwt = auth.isAuthenticated();
-    //alert(`Returned`);
-    remove(
-      {
-        borrowId: id,
-      },
-      { t: jwt.token }
-    ).then((data) => {
-      if (data && data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setValues({ ...values, userId: data._id, redirectToProfile: true });
-        return <Navigate to={"/myaccount"} />;
-      }
-    });
-  };
-  
-  //if (values != null && values.redirectToProfile==true){
-  //  values.redirectToProfile=false;
-  //  return <Navigate to={"/myaccount"} />;
-  //}
-
   return (
     <Paper className={classes.root} elevation={4}>
       <Typography variant="h6" className={classes.title}>
@@ -136,10 +98,7 @@ export default function Borrows() {
                   src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
                 />
                 <ImageListItemBar title={item.title} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
-                
             </Link>
-            <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.submit}>Renew</Button>
-            <Button color="primary" variant="contained" onClick={() => clickSubmit_return(item._id)} className={classes.submit}>Return</Button>
             </div>
           );
           }
@@ -147,34 +106,4 @@ export default function Borrows() {
       </ImageList>
     </Paper>
   );
-
-  function clickSubmit(id) {
-  const jwt = auth.isAuthenticated();
-  alert(`Renewed! Extended for an additional 28 days from today. Please refresh the web page.`);
-  var startOfToday = new Date();
-  var priorDate = new Date(new Date().setDate(startOfToday.getDate() + 28));
-  priorDate.setHours(0,0,0,0);
-
-  const borrow = {
-    date: priorDate || undefined,
-  };
-  update(
-    {
-      borrowId: id,
-    },
-    { t: jwt.token },
-    borrow
-  ).then((data) => {
-    if (data && data.error) {
-      setValues({ ...values, error: data.error });
-    } else {
-      setValues({ ...values, userId: data._id, redirectToProfile: true });
-      
-    }
-  });
-  if (values.redirectToProfile) {
-    return <Navigate to={"/user/" + values.userId} />;
-  }
-}
-
 }
