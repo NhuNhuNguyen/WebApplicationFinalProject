@@ -5,6 +5,8 @@ import { format } from 'date-fns'
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
 import Paper from "@material-ui/core/Paper";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
@@ -90,23 +92,28 @@ export default function Lists() {
     <Typography variant="h4" className={classes.title}>Welcome to Web Ninja's Library</Typography>
     </Card>
     <Typography variant="h4" className={classes.title}>Collections of books</Typography>
-      <ImageList sx={{ width: 500, height: 450, margin: "auto" }} variant="quilted" cols={3} rowHeight={200} >
+      <ImageList sx={{ width: 500, margin: "10px" }} variant="quilted" cols={3} rowHeight={320} >
         {books.map((item, i) => {
           return (
             <Link component={RouterLink} to={"/bookPub/" + item._id} key={i}>
-              <td>
-                <Box
+                            <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
                   component="img"
-                  sx={{
-                    height: 128,
-                    width: 128,
-                    maxHeight: { xs: 233, md: 167 },
-                    maxWidth: { xs: 350, md: 250 },
-                  }}
                   alt={item.title}
-                  src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                  height="200"
+                  //image={`${bookImg}`}
+                  image={`${item.coverImg}`}
+                  sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}
                 />
-                </td><td>Title: {item.title}<br/>Author: {item.author}</td>
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="div">
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Author: {item.author}
+                  </Typography>
+                </CardContent>
+              </Card>
                 
                 
             </Link>
