@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     // Define your submit button styles here
   },
+  button: {
+    borderRadius: 28,
+  },
   title: {
     padding: theme.spacing(3, 2.5, 2),
     color: theme.palette.openTitle,
@@ -133,7 +136,7 @@ export default function Lists() {
             
             {
             auth.isAuthenticated() && (
-            <><Link component={RouterLink} to={"/updateBook/" + item._id} key={i}><Button variant="contained" color="default" className={classes.button} startIcon={<EditIcon />} > Modify </Button></Link>&nbsp;&nbsp;&nbsp;<Link component={RouterLink} to={"/updateItem/" + item._id} key={i}>
+            <><Link component={RouterLink} to={"/updateBook/" + item._id} key={i}><Button variant="contained" color="default" className={classes.button} startIcon={<EditIcon />} > Modify </Button></Link>&nbsp;&nbsp;&nbsp;<Link component={RouterLink} to={"/deletebook/" + item._id} key={i}>
             <Button variant="contained" color="secondary" className={classes.button} startIcon={<DeleteIcon />}>
             Delete
             </Button></Link></>)

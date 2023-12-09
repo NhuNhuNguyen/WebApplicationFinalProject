@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
   error: {
     // Define your error icon styles here
   },
-  submit: {
-    // Define your submit button styles here
+  button: {
+    borderRadius: 28,
   },
   title: {
     // Define your title styles here
@@ -126,7 +126,7 @@ export default function Lists() {
                 <ImageListItemBar title={item.title} subtitle={<span>Author: {item.author}</span>} position="below" />
                 
             </Link>
-            <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id, item.title)} className={classes.submit} startIcon={<PanToolIcon />}>Borrow</Button>
+            <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id, item.title)} className={classes.button} startIcon={<PanToolIcon />}>Borrow</Button>
             </div>
           );
         })}

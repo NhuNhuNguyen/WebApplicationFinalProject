@@ -50,6 +50,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3, 2.5, 2),
     color: theme.palette.openTitle,
   },
+  button: {
+    borderRadius: 28,
+  },
   media: {
     minHeight: 400,
   },
@@ -140,8 +143,8 @@ export default function Borrows() {
                 <ImageListItemBar title={item.title} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
                 
             </Link>
-            <Button color="inherit" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.submit} startIcon={<AutorenewIcon />}>Renew</Button>
-            &nbsp;&nbsp;&nbsp;<Button color="secondary" variant="contained" onClick={() => clickSubmit_return(item._id)} className={classes.submit} startIcon={<ArrowDropDownCircleIcon />}>Return</Button>
+            <Button color="inherit" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.button} startIcon={<AutorenewIcon />}>Renew</Button>
+            &nbsp;&nbsp;&nbsp;<Button color="secondary" variant="contained" onClick={() => clickSubmit_return(item._id)} className={classes.button} startIcon={<ArrowDropDownCircleIcon />}>Return</Button>
             </div>
           );
           }

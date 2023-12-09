@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     'margin-left': '5%',
     //width: "100%",
-    borderRadius: 5,
+    borderRadius: 7,
   },
   title: {
     padding: theme.spacing(2, 2, 2, 2),
