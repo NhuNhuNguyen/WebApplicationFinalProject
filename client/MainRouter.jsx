@@ -7,6 +7,7 @@ import Menu from "./core/Menu";
 
 import MyAccount from "./lib/MyAccount.jsx";
 import ListBooks from "./lib/ListBooks.jsx";
+import ManageBooks from "./book/ManageBooks.jsx";
 import Home2 from "./core/Home.jsx";
 import RenewBook from "./lib/Renew.jsx";
 import ReturnBook from "./lib/Return.jsx";
@@ -16,8 +17,8 @@ import PrivateRoute from "./lib/PrivateRoute.jsx";
 import EditProfile from "./user/EditProfile.jsx";
 import DetailBook from "./lib/DetailBook.jsx";
 import HomeDetail from "./lib/HomeDetail.jsx";
-import AddItem from "./book/AddItem.jsx";
-import UpdateItem from "./book/UpdateItem.jsx";
+import AddBook from "./book/AddBook.jsx";
+import UpdateBook from "./book/UpdateBook.jsx";
 
 function MainRouter() {
   return (
@@ -31,6 +32,7 @@ function MainRouter() {
 
         <Route path="/myaccount" element={<MyAccount />} />
         <Route path="/listbooks" element={<ListBooks />} />
+        <Route path="/managebooks" element={<ManageBooks />} />
         <Route path="/" element={<Home2 />} />
         <Route path="/renew" element={<RenewBook />} />
         <Route path="/return" element={<ReturnBook />} />
@@ -38,8 +40,8 @@ function MainRouter() {
         <Route path="/user/:userId" element={<Profile />} />
         <Route path="/book/:bookId" element={<DetailBook />} />
         <Route path="/bookPub/:bookId" element={<HomeDetail />} />
-        <Route path="/addItem" element={<AddItem />} />
-        <Route path="/updateItem/:bookId" element={<UpdateItem />} />
+        <Route path="/addBook" element={<AddBook />} />
+        <Route path="/updateBook/:bookId" element={<UpdateBook />} />
         
         <Route
           path="/user/edit/:userId"

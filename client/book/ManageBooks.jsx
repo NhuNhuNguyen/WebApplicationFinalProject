@@ -17,18 +17,20 @@ import ImageListItem from "@material-ui/core/ImageListItem";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItemBar from "@material-ui/core/ImageListItemBar";
 import Button from '@material-ui/core/Button';
-import PanToolIcon from '@material-ui/icons/PanTool';
 
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 //import Person from '@material-ui/core/Person'
-//import ArrowForward from '@material-ui/core/ArrowForward'
+
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-//import ArrowForward from '@material-ui/core/ArrowForward'
+
 import ArrowForward from "@material-ui/icons/ArrowForward";
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 //import unicornbikeImg from "./../assets/images/unicornbikeImg.jpg";
 import bookImg from './../assets/images/book.png';
 import { list } from "../borrow/api-book.js";
@@ -51,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     // Define your submit button styles here
   },
   title: {
-    // Define your title styles here
+    padding: theme.spacing(3, 2.5, 2),
+    color: theme.palette.openTitle,
   },
   root: {
     // Define your root styles here
@@ -105,8 +108,9 @@ export default function Lists() {
   return (
     <Paper className={classes.root} elevation={4}>
       <Typography variant="h6" className={classes.title}>
-        All Books
+        Manage Books &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Link component={RouterLink} to="/addBook"><Button variant="contained" color="primary" className={classes.button} startIcon={<PostAddIcon />}>Add New Book</Button></Link>
       </Typography>
+      
       <ImageList sx={{ width: 500, height: 450 }} cols={1} rowHeight={200} >
         {books.map((item, i) => {
           return (
@@ -126,7 +130,14 @@ export default function Lists() {
                 <ImageListItemBar title={item.title} subtitle={<span>Author: {item.author}</span>} position="below" />
                 
             </Link>
-            <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id, item.title)} className={classes.submit} startIcon={<PanToolIcon />}>Borrow</Button>
+            
+            {
+            auth.isAuthenticated() && (
+            <><Link component={RouterLink} to={"/updateBook/" + item._id} key={i}><Button variant="contained" color="default" className={classes.button} startIcon={<EditIcon />} > Modify </Button></Link>&nbsp;&nbsp;&nbsp;<Link component={RouterLink} to={"/updateItem/" + item._id} key={i}>
+            <Button variant="contained" color="secondary" className={classes.button} startIcon={<DeleteIcon />}>
+            Delete
+            </Button></Link></>)
+            }
             </div>
           );
         })}

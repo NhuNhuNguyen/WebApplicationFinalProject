@@ -81,9 +81,9 @@ export default function Menu(){
           <HistoryIcon/>My Borrow
         </IconButton>
       </Link>
-      <Link to="/addItem">
-        <IconButton aria-label="Home" style={isActive(location, "/addItem")}>
-          <RecentActorsIcon/>Add Book
+      <Link to="/manageBooks">
+        <IconButton aria-label="Home" style={isActive(location, "/manageBooks")}>
+          <RecentActorsIcon/>Manage Books
         </IconButton>
       </Link>
       <IconButton aria-label="Home" style={isActive(location, "/signout")} onClick={() => {

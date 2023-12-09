@@ -19,6 +19,8 @@ import ImageListItem from "@material-ui/core/ImageListItem";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItemBar from "@material-ui/core/ImageListItemBar";
 import Button from '@material-ui/core/Button';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
 
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
@@ -138,8 +140,8 @@ export default function Borrows() {
                 <ImageListItemBar title={item.title} subtitle={<span>Expiry date: {format(new Date(item.date), "dd-MMM-yyyy")}</span>} position="below" />
                 
             </Link>
-            <Button color="primary" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.submit}>Renew</Button>
-            <Button color="primary" variant="contained" onClick={() => clickSubmit_return(item._id)} className={classes.submit}>Return</Button>
+            <Button color="inherit" variant="contained" onClick={() => clickSubmit(item._id)} className={classes.submit} startIcon={<AutorenewIcon />}>Renew</Button>
+            &nbsp;&nbsp;&nbsp;<Button color="secondary" variant="contained" onClick={() => clickSubmit_return(item._id)} className={classes.submit} startIcon={<ArrowDropDownCircleIcon />}>Return</Button>
             </div>
           );
           }
