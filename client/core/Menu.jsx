@@ -28,7 +28,7 @@ export default function Menu(){
   const location = useLocation();
 
   return (
-  <AppBar position="static">
+  <AppBar position="static" style={{ background: '#225777', borderRadius: 28 }}>
     <Toolbar>
     <Box
       component="img"

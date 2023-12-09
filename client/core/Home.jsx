@@ -26,9 +26,23 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 600,
     margin: 'auto',
     marginTop: theme.spacing(5),
+    borderRadius: 28,
+  },
+  cardstyle:{
+    //marginTop: theme.spacing(20),
+    //margin:'auto',
+    flexDirection: 'column',
+    'margin-left': '5%',
+    //width: "100%",
+    borderRadius: 5,
   },
   title: {
-    padding: theme.spacing(3, 2.5, 2),
+    padding: theme.spacing(2, 2, 2, 2),
+    marginLeft: '6%',
+    color: theme.palette.openTitle,
+  },
+  subtitle: {
+    padding: theme.spacing(2, 2, 2, 2),
     color: theme.palette.openTitle,
   },
   textField: {
@@ -41,12 +55,15 @@ const useStyles = makeStyles((theme) => ({
     // Define your submit button styles here
   },
   root: {
-    // Define your root styles here
+    height: '-webkit-fill-available',
+    margin: 0,
+    paddingLeft: 30,
+    background: 'rgba(239, 243, 246, 1)',
   },
   media: {           // this is the`className` passed to `CardMedia` later
     //height: 100,     // as an example I am modifying width and height
     width: 250,
-    //marginLeft: '-33%'
+    marginLeft: '6%'
   },
 }));
 
@@ -98,12 +115,12 @@ export default function Lists() {
     <Card className={classes.card}>
       <Typography variant="h4" className={classes.title}>Welcome to Web Ninja's Library</Typography>
     </Card>
-    <Typography variant="h4" className={classes.title}>Collections of books</Typography>
+    <Typography variant="h4" className={classes.subtitle}>Collections of books</Typography>
       <ImageList sx={{ width: 500, margin: "10px" }} variant="quilted" cols={4} rowHeight={520} >
         {books.map((item, i) => {
           return (
             <Link component={RouterLink} to={"/bookPub/" + item._id} key={i}>
-              <Card variant="outlined"
+              <Card className={classes.cardstyle} variant="outlined"
       orientation="horizontal" sx={{ maxWidth: 345 }}>
                 <CardMedia
                   className={classes.media}
