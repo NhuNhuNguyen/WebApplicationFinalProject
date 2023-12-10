@@ -11,6 +11,7 @@ import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
+import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from "@material-ui/core/styles";
 import auth from "../lib/auth-helper.js";
 import { read } from "../borrow/api-book.js";
@@ -105,7 +106,7 @@ export default function BookDetail({ match }) {
         
       </ListItem>
       <ListItem><ListItemText primary={'Description: ' +book.description} /></ListItem>
-      <ListItem><ListItemText primary={'Rating: ' +book.rating +' /5.0'} /></ListItem>
+      <ListItem>Rating: <Rating name="half-rating-read" value={book.rating} defaultValue={book.rating} precision={0.01} readOnly /></ListItem>
       <Divider />
       <ListItem>
         <ListItemText

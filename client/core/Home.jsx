@@ -128,7 +128,7 @@ export default function Lists() {
                   alt={item.title}
                   //height="200"
                   //image={`${bookImg}`}
-                  image={`${item.coverImg}`}
+                  image={`${item.coverImg===undefined?bookImg:item.coverImg}`}
                   sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}
                 />
                 <CardContent>
