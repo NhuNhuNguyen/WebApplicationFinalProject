@@ -10,6 +10,7 @@ import Person from "@material-ui/icons/Person";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import CardMedia from "@material-ui/core/CardMedia";
 import Icon from "@material-ui/core/Icon";
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from "@material-ui/core/styles";
@@ -55,9 +56,7 @@ export default function BookDetail({ match }) {
   const jwt = auth.isAuthenticated();
 
   var username = ReactSession.get("username");
-  //if (username ==null){
-  //  alert(' Needed login')
-  //}
+
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -89,21 +88,16 @@ export default function BookDetail({ match }) {
     <List dense>
       <ListItem>
         <ListItemAvatar>
-          <Box
-            component="img"
-            sx={{
-              height: 128,
-              width: 128,
-              maxHeight: { xs: 233, md: 167 },
-              maxWidth: { xs: 350, md: 250 },
-            }}
-            alt={book.title}
-            src={`${bookImg}?w=161&fit=crop&auto=format&dpr=2 2x`}
-          />
+        <CardMedia
+          component="img"
+          alt={book.title}
+          height="250"
+          image={`${book.coverImg===undefined?bookImg:book.coverImg}`}
+          sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}
+        />
         </ListItemAvatar>
         <ListItemText primary={'Author: ' +book.author} secondary={'Publisher: ' +book.publisher} />
-        
-        
+
       </ListItem>
       <ListItem><ListItemText primary={'Description: ' +book.description} /></ListItem>
       <ListItem>Rating: <Rating name="half-rating-read" value={book.rating} defaultValue={book.rating} precision={0.01} readOnly /></ListItem>
