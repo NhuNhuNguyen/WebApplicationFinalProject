@@ -100,7 +100,7 @@ export default function BookDetail({ match }) {
 
       </ListItem>
       <ListItem><ListItemText primary={'Description: ' +book.description} /></ListItem>
-      <ListItem>Rating: <Rating name="half-rating-read" value={book.rating} defaultValue={book.rating} precision={0.01} readOnly /></ListItem>
+      <ListItem>Rating: <Rating name="half-rating-read" value={Math.round(book.rating)} defaultValue={Math.round(book.rating)} precision={0.01} readOnly /></ListItem>
       <Divider />
       <ListItem>
         <ListItemText
